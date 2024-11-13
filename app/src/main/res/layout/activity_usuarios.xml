@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:backgroundTint="@color/Volver"
+        android:textColor="@color/TextBotones"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Título de la pantalla -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuarios"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"/>
+
+    <!-- Lista de usuarios -->
+    <ListView
+        android:id="@+id/listaUsuarios"
+        android:layout_width="match_parent"
+        android:layout_height="161dp" />
+
+    <!-- Campos para agregar/editar usuario -->
+    <EditText
+        android:id="@+id/editComuna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comuna" />
+
+    <EditText
+        android:id="@+id/editCalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Calle" />
+
+    <EditText
+        android:id="@+id/editSector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sector" />
+
+    <EditText
+        android:id="@+id/editDispositivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dispositivo" />
+
+    <!-- Botones para agregar, actualizar y eliminar -->
+    <Button
+        android:id="@+id/btnAgregarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Agregar"
+        android:textColor="@color/TextBotones"
+        android:text="Agregar Usuario"/>
+
+    <Button
+        android:id="@+id/btnActualizarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Actualizar"
+        android:textColor="@color/TextBotones"
+        android:text="Actualizar Usuario"/>
+
+    <Button
+        android:id="@+id/btnEliminarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Eliminar"
+        android:textColor="@color/TextBotones"
+        android:text="Eliminar Usuario"/>
+
+    <!-- Botón de registro -->
+    <Button
+        android:id="@+id/btnRegistrarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Registrar Nuevo Usuario" />
+</LinearLayout>

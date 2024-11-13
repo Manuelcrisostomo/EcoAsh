@@ -1,0 +1,184 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/hydroSafe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hacer Click para ver los datos claramente"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+
+    <!-- Lista de Dispositivos -->
+    <ListView
+        android:id="@+id/listViewDispositivos"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_marginBottom="16dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
+
+    <!-- Campos de Texto para los Sensores -->
+    <!-- Cambios a TextView si solo es para mostrar información sin edición -->
+    <EditText
+        android:id="@+id/etComuna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comuna"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etCalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Calle"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etSector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sector"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etDispositivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dispositivo"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etPM25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PM2.5"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etPM10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PM10"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etCO2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CO2"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etCO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CO"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etMonoxidoCarbono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Monóxido de Carbono"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etTemperatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Temperatura"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etHumedad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Humedad"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etNivelCenizas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nivel de Cenizas"
+        android:layout_marginBottom="16dp" />
+    <EditText
+        android:id="@+id/etUVRadiacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Radiación UV" />
+
+    <EditText
+        android:id="@+id/etVelocidadViento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Velocidad del Viento (km/h)" />
+
+    <EditText
+        android:id="@+id/etClima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Clima (Soleado, Nublado...)" />
+
+
+
+    <!-- LinearLayout Horizontal para los botones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="16dp">
+        <!-- Botón Volver -->
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Volver"
+            android:textColor="@color/TextBotones"
+            android:layout_marginEnd="16dp"
+            android:text="Volver"
+            android:enabled="false" />
+
+
+        <!-- Botón Eliminar -->
+        <Button
+            android:id="@+id/btnBorrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Eliminar"
+            android:textColor="@color/TextBotones"
+            android:layout_marginEnd="16dp"
+            android:text="Eliminar"
+            android:enabled="false" />
+
+        <!-- Botón Actualizar -->
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Actualizar"
+            android:textColor="@color/TextBotones"
+            android:layout_marginEnd="16dp"
+            android:text="Actualizar"
+            android:enabled="false" />
+
+        <!-- Botón Agregar -->
+        <Button
+            android:id="@+id/btnAgregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Agregar"
+            android:textColor="@color/TextBotones"
+            android:text="Agregar" />
+    </LinearLayout>
+
+</LinearLayout>

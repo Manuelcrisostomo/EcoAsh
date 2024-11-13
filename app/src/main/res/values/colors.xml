@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="skyblue">#2fc5ec</color>
+    <!-- Color verde para nivel bajo -->
+    <color name="color_bajo">#00FF00</color>
+    <!-- Color amarillo para nivel medio -->
+    <color name="color_medio">#FFFF00</color>
+    <!-- Color rojo para nivel alto -->
+    <color name="color_alto">#FF0000</color>
+    <color name="Agregar">#4CAF50</color> <!-- Verde -->
+    <color name="Actualizar">#FFEB3B</color> <!-- Amarillo -->
+    <color name="Eliminar">#F44336</color> <!-- Rojo -->
+    <color name="Volver">#00BCD4</color> <!-- Celeste -->
+    <color name="TextBotones">#FF000000</color> <!-- Celeste -->
+    <color name="transparent">#80000000</color> <!-- Color con 50% de transparencia (semi-transparente) #33ffc1-->
+    <color name="VerdeAgua">#00ffc1</color> <!-- Verde agua sin opacidad -->
+    <color name="NegroTexto">#000000</color> <!-- Color negro para el texto -->
+
+
+
+</resources>

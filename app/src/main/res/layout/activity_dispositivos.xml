@@ -1,29 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-
-    <TextView
-        android:id="@+id/hydroSafe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hacer Click para ver los datos claramente"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-
-    <!-- Lista de Dispositivos -->
     <ListView
         android:id="@+id/listViewDispositivos"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
-        android:layout_marginBottom="16dp"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="0.5dp" />
+        android:layout_height="109dp" />
 
     <!-- Campos de Texto para los Sensores -->
     <!-- Cambios a TextView si solo es para mostrar información sin edición -->
@@ -183,7 +168,7 @@
             android:layout_height="wrap_content"
             android:hint="Radiación UV" />
 
-         <EditText
+        <EditText
             android:id="@+id/etClima"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -200,71 +185,64 @@
         android:hint="Velocidad del Viento (km/h)" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- LinearLayout Horizontal para los botones -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:gravity=""
         android:orientation="horizontal"
-        android:gravity="end"
-        android:layout_marginTop="16dp">
-
-
-        <!-- Botón Volver -->
-
-
-        <!-- Botón Eliminar -->
-        <Button
-            android:id="@+id/btnVolver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/Volver"
-            android:enabled="false"
-            android:text="Volver"
-            android:textColor="@color/TextBotones" />
-
-        <Button
-            android:id="@+id/btnBorrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/Eliminar"
-            android:textColor="@color/TextBotones"
-            android:layout_marginEnd="16dp"
-            android:text="Eliminar"
-            android:enabled="false" />
-
-        <!-- Botón Actualizar -->
-        <Button
-            android:id="@+id/btnActualizar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/Actualizar"
-            android:textColor="@color/TextBotones"
-            android:layout_marginEnd="16dp"
-            android:text="Actualizar"
-            android:enabled="false" />
+        android:padding="16dp">
 
         <!-- Botón Agregar -->
         <Button
             android:id="@+id/btnAgregar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:backgroundTint="@color/Agregar"
-            android:textColor="@color/TextBotones"
-            android:text="Agregar" />
+            android:text="Agregar"
+            android:textColor="@color/TextBotones" />
+
+        <!-- Botón Actualizar -->
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/Actualizar"
+            android:enabled="false"
+            android:text="Actualizar"
+            android:textColor="@color/TextBotones" />
+
+        <!-- Botón Borrar -->
+        <Button
+            android:id="@+id/btnBorrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/Eliminar"
+            android:enabled="false"
+            android:text="Borrar"
+            android:textColor="@color/TextBotones" />
+
+
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity=""
+        android:orientation="horizontal"
+        android:padding="16dp">
+        <!-- Botón Volver Atrás -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/Volver"
+            android:text="Volver"
+            android:textColor="@color/TextBotones" />
+    </LinearLayout>
+
+
 
 </LinearLayout>

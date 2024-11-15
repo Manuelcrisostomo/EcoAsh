@@ -18,11 +18,15 @@ public class SensorData {
     private double temperatura;
     private double humedad;
     private double nivelCenizas;
+    private double UVRadiacion;
+    private double velocidadViento;
+    private String clima;
 
     // Constructor
     public SensorData(String comuna, String calle, String sector, String dispositivo,
                       double pm25, double pm10, double co2, double co, double monoxidoCarbono,
-                      double temperatura, double humedad, double nivelCenizas) {
+                      double temperatura, double humedad, double nivelCenizas,
+                      double UVRadiacion, double velocidadViento, String clima) {
         this.comuna = comuna;
         this.calle = calle;
         this.sector = sector;
@@ -35,9 +39,28 @@ public class SensorData {
         this.temperatura = temperatura;
         this.humedad = humedad;
         this.nivelCenizas = nivelCenizas;
+        this.UVRadiacion = UVRadiacion;
+        this.velocidadViento = velocidadViento;
+        this.clima = clima;
     }
 
-    // Métodos getters y setters
+    // Getters y Setters
+    public double getUVRadiacion() {return UVRadiacion;}
+
+    public void setUVRadiacion(double UVRadiacion) {this.UVRadiacion = UVRadiacion;}
+
+    public double getVelocidadViento() {return velocidadViento;}
+
+    public void setVelocidadViento(double velocidadViento) {this.velocidadViento = velocidadViento;}
+
+    public String getClima() {
+        return clima;
+    }
+
+    public void setClima(String clima) {
+        this.clima = clima;
+    }
+
     public String getComuna() {
         return comuna;
     }
@@ -134,105 +157,134 @@ public class SensorData {
         this.nivelCenizas = nivelCenizas;
     }
 
-    // Método toString modificado para mostrar los niveles con colores utilizando SpannableString
+    // Método toString modificado
     @Override
     public String toString() {
         SpannableString spannableString = new SpannableString(
-                "Dispositivo: " + dispositivo +"Comuna: " + comuna +
-                        "Calle: " + calle +
-                        "Sector: " + sector +
-                        "PM25: " + pm25 + " " + obtenerNivelConColor(pm25, 10, 20) + "\n" +
-                        "PM10: " + pm10 + " " + obtenerNivelConColor(pm10, 15, 30) +
-                        "CO2: " + co2 + " " + obtenerNivelConColor(co2, 300, 600) +
-                        "CO: " + co + " " + obtenerNivelConColor(co, 0.1, 0.5) + "\n" +
-                        "Monóxido de Carbono: " + monoxidoCarbono + " " + obtenerNivelConColor(monoxidoCarbono, 0.1, 0.5) +
-                        "Temperatura: " + temperatura + "°C " + obtenerNivelTemperaturaConColor(temperatura) +
-                        "Humedad: " + humedad + "% " + obtenerNivelConColor(humedad, 30, 70) + "\n" +
-                        "Nivel de Cenizas: " + nivelCenizas + " " + obtenerNivelCenizasConColor(nivelCenizas)
+                "Dispositivo: " + dispositivo +"  "+
+                        "Comuna: " + comuna +"  "+
+                        "Calle: " + calle +"  "+
+                        "Sector: " + sector +"  "+
+                        "PM25: " + pm25 + " " + obtenerNivelConColor(pm25, 10, 20) +"  "+
+                        "PM10: " + pm10 + " " + obtenerNivelConColor(pm10, 15, 30) +"  "+
+                        "CO2: " + co2 + " " + obtenerNivelConColor(co2, 300, 600) + "\n" +"  "+
+                        "CO: " + co + " " + obtenerNivelConColor(co, 0.1, 0.5) +"  "+
+                        "Monóxido de Carbono: " + monoxidoCarbono + " " + obtenerNivelConColor(monoxidoCarbono, 0.1, 0.5) +"  "+
+                        "Temperatura: " + temperatura + "°C " + obtenerNivelTemperaturaConColor(temperatura) +"  "+
+                        "Humedad: " + humedad + "% " + obtenerNivelConColor(humedad, 30, 70) +"  "+
+                        "Nivel de Cenizas: " + nivelCenizas + " " + obtenerNivelCenizasConColor(nivelCenizas) +"  "+
+                        "Radiación UV: " + UVRadiacion + " " + obtenerNivelUVTexto(UVRadiacion) +"  "+
+                        "Velocidad del Viento: " + velocidadViento + " km/h " + obtenerNivelVientoTexto(velocidadViento) + "  "+
+                        "Clima: " + clima
         );
 
         return spannableString.toString();
     }
 
+    //
+        //
+        //                ", clima='" + clima + '\'' +
+        //                '}';//
     // Métodos auxiliares para determinar el nivel de cada parámetro con colores
-    private SpannableString obtenerNivelConColor(double valor, double bajo, double alto) {
+    public SpannableString obtenerNivelConColor(double valor, double bajo, double alto) {
         String nivel = obtenerNivelTexto(valor, bajo, alto);
         SpannableString spannable = new SpannableString(nivel);
         int color;
 
         if (nivel.equals("Bajo")) {
-            color = 0x00FF00; // Verde para "Bajo"
+            color = 0xFF00FF00; // Verde para "Bajo"
         } else if (nivel.equals("Medio")) {
-            color = 0xFFFF00; // Amarillo para "Medio"
+            color = 0xFFFFFF00; // Amarillo para "Medio"
         } else {
-            color = 0xFF0000; // Rojo para "Alto"
+            color = 0xFFFF0000; // Rojo para "Alto"
         }
 
         spannable.setSpan(new ForegroundColorSpan(color), 0, nivel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
 
-    private SpannableString obtenerNivelTemperaturaConColor(double temperatura) {
+    public SpannableString obtenerNivelTemperaturaConColor(double temperatura) {
         String nivel = obtenerNivelTemperaturaTexto(temperatura);
         SpannableString spannable = new SpannableString(nivel);
         int color;
 
         if (nivel.equals("Bajo")) {
-            color = 0x00FF00; // Verde para "Bajo"
+            color = 0xFF00FF00; // Verde para "Bajo"
         } else if (nivel.equals("Medio")) {
-            color = 0xFFFF00; // Amarillo para "Medio"
+            color = 0xFFFFFF00; // Amarillo para "Medio"
         } else {
-            color = 0xFF0000; // Rojo para "Alto"
+            color = 0xFFFF0000; // Rojo para "Alto"
         }
 
         spannable.setSpan(new ForegroundColorSpan(color), 0, nivel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
 
-    private SpannableString obtenerNivelCenizasConColor(double nivelCenizas) {
+    public SpannableString obtenerNivelCenizasConColor(double nivelCenizas) {
         String nivel = obtenerNivelCenizasTexto(nivelCenizas);
         SpannableString spannable = new SpannableString(nivel);
         int color;
 
-        if (nivel.equals("Bajo")) {
-            color = 0x00FF00; // Verde para "Bajo"
+        if (nivel.equals("Vacio")) {
+            color = 0xFF00FF00; // Verde para "Vacio"
         } else if (nivel.equals("Medio")) {
-            color = 0xFFFF00; // Amarillo para "Medio"
+            color = 0xFFFFFF00; // Amarillo para "Medio"
         } else {
-            color = 0xFF0000; // Rojo para "Alto"
+            color = 0xFFFF0000; // Rojo para "Lleno"
         }
 
         spannable.setSpan(new ForegroundColorSpan(color), 0, nivel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
 
+    // Métodos auxiliares para determinar los niveles
     private String obtenerNivelTexto(double valor, double bajo, double alto) {
         if (valor < bajo) {
-            return "  Nivel Bajo  ";
+            return " Niveles Bajos ";
         } else if (valor >= bajo && valor <= alto) {
-            return "  Nivel Medio  ";
+            return " Niveles Medios ";
         } else {
-            return "  Nivel Alto  ";
+            return " Niveles Altos ";
         }
     }
 
     private String obtenerNivelTemperaturaTexto(double temperatura) {
         if (temperatura < 18) {
-            return "  Nivel Bajo  ";
+            return " Nivel Bajo ";
         } else if (temperatura >= 18 && temperatura <= 28) {
-            return "  Nivel Medio  ";
+            return " Nivel Medio ";
         } else {
-            return "Nivel Alto";
+            return " Nivel Alto ";
         }
     }
 
     private String obtenerNivelCenizasTexto(double nivelCenizas) {
         if (nivelCenizas < 5) {
-            return "Nivel Vacio";
+            return "  Vacio  ";
         } else if (nivelCenizas >= 5 && nivelCenizas <= 15) {
-            return "Nivel Medio";
+            return " Medio ";
         } else {
-            return "Nivel LLeno";
+            return "  Lleno  ";
         }
     }
+    private String obtenerNivelUVTexto(double UVRadiacion) {
+        if (UVRadiacion < 3) {
+            return " Nivel Bajo ";
+        } else if (UVRadiacion >= 3 && UVRadiacion <= 6) {
+            return " Nivel Medio ";
+        } else {
+            return " Nivel Alto ";
+        }
+    }
+    private String obtenerNivelVientoTexto(double velocidadViento) {
+        if (velocidadViento < 10) {
+            return " Nivel Bajo ";
+        } else if (velocidadViento >= 10 && velocidadViento <= 30) {
+            return " Nivel Medio ";
+        } else {
+            return " Nivel Alto ";
+        }
+    }
+
+
 }

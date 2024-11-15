@@ -1,4 +1,5 @@
 package com.example.inicio;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -75,12 +76,34 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
+
+
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
+
 public class Dispositivos extends AppCompatActivity {
 
     private ListView listViewDispositivos;
     private EditText etComuna, etCalle, etSector, etDispositivo;
     private EditText etPM25, etPM10, etCO2, etCO, etMonoxidoCarbono, etTemperatura, etHumedad, etNivelCenizas;
-    private Button btnAdd, btnUpdate, btnDelete, btnBack;
+    private EditText etUVRadiacion, etVelocidadViento, etClima;
+    private Button btnAdd, btnUpdate, btnDelete,btnVolverAtras, btnBack;
     private ArrayList<SensorData> sensores;
     private ArrayAdapter<SensorData> adapter;
     private SensorData selectedSensor;
@@ -104,20 +127,20 @@ public class Dispositivos extends AppCompatActivity {
         etTemperatura = findViewById(R.id.etTemperatura);
         etHumedad = findViewById(R.id.etHumedad);
         etNivelCenizas = findViewById(R.id.etNivelCenizas);
+        etUVRadiacion = findViewById(R.id.etUVRadiacion);
+        etVelocidadViento = findViewById(R.id.etVelocidadViento);
+        etClima = findViewById(R.id.etClima);
         btnAdd = findViewById(R.id.btnAgregar);
         btnUpdate = findViewById(R.id.btnActualizar);
         btnDelete = findViewById(R.id.btnBorrar);
-        btnBack = findViewById(R.id.btnVolver);
+        btnBack = findViewById(R.id.btnBack);
 
-        // Inicializar lista de sensores
         sensores = new ArrayList<>();
         cargarDatosPreCargados();
 
-        // Crear el adaptador para el ListView
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sensores);
         listViewDispositivos.setAdapter(adapter);
 
-        // Listener para el ListView
         listViewDispositivos.setOnItemClickListener((parent, view, position, id) -> {
             selectedSensor = sensores.get(position);
             if (selectedSensor != null) {
@@ -127,7 +150,6 @@ public class Dispositivos extends AppCompatActivity {
             }
         });
 
-        // Agregar dispositivo
         btnAdd.setOnClickListener(v -> {
             if (!isValidInput()) {
                 Toast.makeText(this, "Por favor ingrese un dato válido en todos los campos", Toast.LENGTH_SHORT).show();
@@ -144,14 +166,12 @@ public class Dispositivos extends AppCompatActivity {
             }
         });
 
-        // Actualizar dispositivo
         btnUpdate.setOnClickListener(v -> {
             if (selectedSensor != null) {
                 if (!isValidInput()) {
                     Toast.makeText(this, "Por favor ingrese un dato válido en todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 actualizarSensorDesdeCampos(selectedSensor);
                 adapter.notifyDataSetChanged();
                 clearFields();
@@ -160,7 +180,6 @@ public class Dispositivos extends AppCompatActivity {
             }
         });
 
-        // Eliminar dispositivo
         btnDelete.setOnClickListener(v -> {
             if (selectedSensor != null) {
                 sensores.remove(selectedSensor);
@@ -170,7 +189,6 @@ public class Dispositivos extends AppCompatActivity {
                 Toast.makeText(this, "Selecciona un dispositivo para eliminar", Toast.LENGTH_SHORT).show();
             }
         });
-
         // Volver atrás
         btnBack.setOnClickListener(v -> {
             if (selectedSensor == null) {
@@ -179,32 +197,31 @@ public class Dispositivos extends AppCompatActivity {
                 clearFields();
             }
         });
+
+
+
     }
+
 
     private void cargarCampos(SensorData sensor) {
         etComuna.setText(sensor.getComuna());
         etCalle.setText(sensor.getCalle());
         etSector.setText(sensor.getSector());
         etDispositivo.setText(sensor.getDispositivo());
-
-        // Asignación de valores con el texto "Nivel"
-        etPM25.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getPm25()), sensor.getPm25()));
-        etPM10.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getPm10()), sensor.getPm10()));
-        etCO2.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getCo2()), sensor.getCo2()));
-        etCO.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getCo()), sensor.getCo()));
-        etMonoxidoCarbono.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getMonoxidoCarbono()), sensor.getMonoxidoCarbono()));
-        etTemperatura.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getTemperatura()), sensor.getTemperatura()));
-        etHumedad.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getHumedad()), sensor.getHumedad()));
-        etNivelCenizas.setText(String.format("Nivel: %s (%.2f)", obtenerNivel(sensor.getNivelCenizas()), sensor.getNivelCenizas()));
+        etPM25.setText(String.valueOf(sensor.getPm25()));
+        etPM10.setText(String.valueOf(sensor.getPm10()));
+        etCO2.setText(String.valueOf(sensor.getCo2()));
+        etCO.setText(String.valueOf(sensor.getCo()));
+        etMonoxidoCarbono.setText(String.valueOf(sensor.getMonoxidoCarbono()));
+        etTemperatura.setText(String.valueOf(sensor.getTemperatura()));
+        etHumedad.setText(String.valueOf(sensor.getHumedad()));
+        etNivelCenizas.setText(String.valueOf(sensor.getNivelCenizas()));
+        etUVRadiacion.setText(String.valueOf(sensor.getUVRadiacion()));
+        etVelocidadViento.setText(String.valueOf(sensor.getVelocidadViento()));
+        etClima.setText(sensor.getClima());
     }
 
-    private String obtenerNivel(double valor) {
-        if (valor < 10) return "Bajo";
-        else if (valor < 20) return "Medio";
-        else return "Alto";
-    }
-
-    private SensorData crearSensorDesdeCampos() throws NumberFormatException {
+    private SensorData crearSensorDesdeCampos() {
         return new SensorData(
                 etComuna.getText().toString(),
                 etCalle.getText().toString(),
@@ -224,14 +241,6 @@ public class Dispositivos extends AppCompatActivity {
         );
     }
 
-    private double parseDouble(EditText editText) {
-        try {
-            return Double.parseDouble(editText.getText().toString());
-        } catch (NumberFormatException e) {
-            return 0.0;
-        }
-    }
-
     private void actualizarSensorDesdeCampos(SensorData sensor) {
         sensor.setComuna(etComuna.getText().toString());
         sensor.setCalle(etCalle.getText().toString());
@@ -245,6 +254,17 @@ public class Dispositivos extends AppCompatActivity {
         sensor.setTemperatura(parseDouble(etTemperatura));
         sensor.setHumedad(parseDouble(etHumedad));
         sensor.setNivelCenizas(parseDouble(etNivelCenizas));
+        sensor.setUVRadiacion(parseDouble(etUVRadiacion));
+        sensor.setVelocidadViento(parseDouble(etVelocidadViento));
+        sensor.setClima(etClima.getText().toString());
+    }
+
+    private double parseDouble(EditText editText) {
+        try {
+            return Double.parseDouble(editText.getText().toString());
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
     }
 
     private void clearFields() {
@@ -260,6 +280,9 @@ public class Dispositivos extends AppCompatActivity {
         etTemperatura.setText("");
         etHumedad.setText("");
         etNivelCenizas.setText("");
+        etUVRadiacion.setText("");
+        etVelocidadViento.setText("");
+        etClima.setText("");
         selectedSensor = null;
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
@@ -277,14 +300,17 @@ public class Dispositivos extends AppCompatActivity {
                 !etMonoxidoCarbono.getText().toString().isEmpty() &&
                 !etTemperatura.getText().toString().isEmpty() &&
                 !etHumedad.getText().toString().isEmpty() &&
-                !etNivelCenizas.getText().toString().isEmpty();
+                !etNivelCenizas.getText().toString().isEmpty() &&
+                !etUVRadiacion.getText().toString().isEmpty() &&
+                !etVelocidadViento.getText().toString().isEmpty();
     }
 
     private void cargarDatosPreCargados() {
-        sensores.add(new SensorData("Comuna 1", "Calle 1", "Sector A", "Dispositivo 1", 10.5, 20.3, 400.0, 5.2, 3.4, 22.5, 55.0, 2.1));
-        sensores.add(new SensorData("Comuna 2", "Calle 2", "Sector B", "Dispositivo 2", 12.1, 18.5, 420.0, 6.0, 3.0, 24.5, 60.0, 1.5));
+        sensores.add(new SensorData("Santiago", "Calle Falsa", "Sector A", "Dispositivo 001", 30, 15, 400, 0.5, 2, 24, 50, 10, 8, 15, "Nublado"));
+        sensores.add(new SensorData("Valparaíso", "Calle Real", "Sector B", "Dispositivo 002", 45, 20, 500, 0.7, 3, 22, 60, 15, 9, 20, "Despejado"));
     }
 }
+
 
 
 
